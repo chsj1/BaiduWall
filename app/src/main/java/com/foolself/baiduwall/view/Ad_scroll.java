@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.foolself.baiduwall.R;
 import java.util.Timer;
 import java.util.TimerTask;
+import android.os.Handler;
 
 /**
  * Created by root on 15-12-6.
@@ -82,7 +83,7 @@ public class Ad_scroll extends LinearLayout {
         handler.sendMessage(msg);
     }
 
-    android.os.Handler handler = new android.os.Handler(){
+    Handler handler = new Handler(){
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 100:
@@ -91,7 +92,6 @@ public class Ad_scroll extends LinearLayout {
                     break;
             }
         }
-
     };
 
     /**
