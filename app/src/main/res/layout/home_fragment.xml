@@ -25,8 +25,34 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:numColumns="2"
+                android:verticalSpacing="2dp"
+                android:horizontalSpacing="2dp"
                 android:layout_below="@+id/myAdScroll">
             </com.foolself.baiduwall.view.MyGridView>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/myGridView"
+                android:clickable="true"
+                android:background="@drawable/bottom_select">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/image_more_icon_feedback"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/idea"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="16dp"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
