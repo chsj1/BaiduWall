@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tool:context=".MainActivity">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select"/>
+    <com.foolself.baiduwall.view.PullLoadRefreshView
+        android:id="@+id/myPullLoadRefreshView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </com.foolself.baiduwall.view.PullLoadRefreshView>
 </RelativeLayout>

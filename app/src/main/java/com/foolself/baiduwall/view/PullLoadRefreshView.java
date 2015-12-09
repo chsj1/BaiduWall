@@ -8,9 +8,6 @@ import android.widget.LinearLayout;
 import android.os.Handler;
 import com.foolself.baiduwall.R;
 
-/**
- * Created by root on 15-12-8.
- */
 public class PullLoadRefreshView extends LinearLayout {
     public static final String LOAD = "load";
     MyScrollLoadView myScrollLoadView;
