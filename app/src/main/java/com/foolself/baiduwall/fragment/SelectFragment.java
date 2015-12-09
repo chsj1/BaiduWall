@@ -65,6 +65,7 @@ public class SelectFragment extends Fragment {
                     try {
                         Thread.sleep(5000);
                         initGridData();
+                        handler.sendEmptyMessage(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

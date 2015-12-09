@@ -45,6 +45,7 @@ public class PullLoadRefreshView extends LinearLayout {
         @Override
         public void click(String bottomOrTop) {
             if (bottomOrTop.equals(LOAD)) {
+                handler.sendEmptyMessage(100);
                 pullCallBack.Load();
             } else {
                 pullCallBack.refresh();
