@@ -2,11 +2,15 @@ package com.foolself.baiduwall.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsoluteLayout;
 import android.widget.BaseAdapter;
+import android.os.Handler;
 
 import com.foolself.baiduwall.R;
 import com.foolself.baiduwall.image.SmartImageView;
@@ -29,7 +33,8 @@ public class SelectFragment extends Fragment {
 
     private void findView(View view) {
         pullLoadRefreshView = (PullLoadRefreshView) view.findViewById(R.id.myPullLoadRefreshView);
-        myGridView = (MyGridView) view.findViewById(R.id.myGridView);
+        //myGridView = (MyGridView) view.findViewById(R.id.myGridView);
+        myGridView = pullLoadRefreshView.getMyGridView();
     }
 
     public void onActivityCreated(Bundle savedInstanceState){
@@ -41,7 +46,7 @@ public class SelectFragment extends Fragment {
         pullLoadRefreshView.setIPullClick(new PullLick());
         initGridData();
         myAdapter = new MyAdapter(getActivity());
-        MyGridView.setAdapter(myAdapter);
+        myGridView.setAdapter(myAdapter);
 
     }
 
@@ -54,7 +59,17 @@ public class SelectFragment extends Fragment {
     private class PullLick implements PullLoadRefreshView.IPullCallBack {
         @Override
         public void Load() {
-            
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(5000);
+                        initGridData();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
         }
 
         @Override
@@ -62,6 +77,17 @@ public class SelectFragment extends Fragment {
 
         }
     }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 100:    //data loaded re adapter
+                    myAdapter.notifyDataSetChanged();
+                    pullLoadRefreshView.dataFinish();
+            }
+        }
+    };
 
     private class MyAdapter extends BaseAdapter {
         Context context;
@@ -99,6 +125,7 @@ public class SelectFragment extends Fragment {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             viewHolder.img.setBackgroundResource(data.get(position));
+            convertView.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.FILL_PARENT, 400));
             return convertView;
         }
     }
