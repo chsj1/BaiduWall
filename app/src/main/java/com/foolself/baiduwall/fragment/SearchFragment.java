@@ -45,7 +45,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void findView(View view) {
-        view.setClickable(true);
+        view.setLongClickable(true);
         view.setOnTouchListener(new MyOnTouchLister());
         myLayout1 = (AbsoluteLayout) view.findViewById(R.id.myLayout1);
         myLayout2 = (AbsoluteLayout) view.findViewById(R.id.myLayout2);
@@ -121,7 +121,7 @@ public class SearchFragment extends Fragment {
                 handler.sendEmptyMessage(i);
 
             }
-        });
+        }).start();
     }
 
     Handler handler = new Handler() {
@@ -164,7 +164,7 @@ public class SearchFragment extends Fragment {
         animationSet.addAnimation(animation);
         animationSet.addAnimation(animation1);
 
-        myLayout1.startAnimation(animationSet);
+        myLayout2.startAnimation(animationSet);
     }
 
     //zoom in myLayout1
@@ -200,7 +200,7 @@ public class SearchFragment extends Fragment {
             switch (i) {
                 case 0:
                     ArrayList<String> newData1 = new ArrayList<String>();
-                    for (int j = 0; j < 10; j++) {
+                    for (int j = 0; j < 12; j++) {
                         newData1.add("China");
                     }
                     data.add(newData1);
@@ -227,7 +227,7 @@ public class SearchFragment extends Fragment {
             textView.setText(data.get(indexPage).get(i));
             AbsoluteLayout.LayoutParams layoutParams = new AbsoluteLayout.LayoutParams(80, 50, x, y);
             myLayout1.addView(textView, layoutParams);
-            startY += 50;
+            startY += 100;
         }
 
     }
